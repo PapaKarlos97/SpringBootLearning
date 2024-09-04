@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интернет-магазин техники</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .welcome-message {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<div class="welcome-message">
+    <h1 id="greeting"></h1>
+    <p>Добро пожаловать в наш интернет-магазин техники! Мы рады предложить вам лучшие товары и услуги.</p>
+</div>
+
+<script>
+    // Функция для отображения приветственного сообщения
+    function showGreeting() {
+        const greetingElement = document.getElementById('greeting');
+        const currentHour = new Date().getHours();
+
+        let greetingText;
+
+        if (currentHour < 12) {
+            greetingText = 'Доброе утро!';
+        } else if (currentHour < 18) {
+            greetingText = 'Добрый день!';
+        } else {
+            greetingText = 'Добрый вечер!';
+        }
+
+        greetingElement.textContent = greetingText;
+    }
+
+    // Вызов функции при загрузке страницы
+    window.onload = showGreeting;
+</script>
+</body>
+</html>
