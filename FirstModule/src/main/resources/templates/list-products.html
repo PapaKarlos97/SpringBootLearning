@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product List</title>
+    <link rel="stylesheet" href="/css/style.css"> <!-- Если есть файл стилей -->
+    <style>
+        /* Встроенные стили для центровки элементов */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        table {
+            margin: auto;
+            border-collapse: collapse;
+            width: 60%;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            margin: 3px;
+            padding: 3px 6px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button.edit {
+            background-color: #2196F3;
+        }
+
+        button.delete {
+            background-color: #f44336;
+        }
+
+        .add-button {
+            background-color: #4CAF50;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Product List</h1>
+
+    <!-- Проверка на наличие продуктов -->
+    <div th:if="${products.isEmpty()}">
+        <p>No products available.</p>
+    </div>
+
+    <!-- Таблица с продуктами -->
+    <table th:if="${!products.isEmpty()}">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Details</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Цикл по всем продуктам -->
+        <tr th:each="product : ${products}">
+            <td th:text="${product.id}">1</td>
+            <td th:text="${product.title}">Product Title</td>
+            <td th:text="${product.details}">Product Details</td>
+            <td>
+                <!-- Кнопки для редактирования и удаления -->
+                <button class="edit" th:onclick="'window.location.href=\'/edit/' + ${product.id} + '\''">Edit</button>
+                <form th:action="@{/delete}" method="post" style="display:inline;">
+                    <input type="hidden" name="id" th:value="${product.id}" />
+                    <button class="delete" type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br/><br/><br/>
+    <!-- Кнопка для добавления продукта -->
+    <a href="/add" class="add-button">Add Product</a>
+</div>
+</body>
+</html>
