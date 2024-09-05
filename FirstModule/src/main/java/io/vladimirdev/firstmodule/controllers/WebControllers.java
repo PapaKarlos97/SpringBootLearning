@@ -9,6 +9,9 @@ public class WebControllers {
     String getGreeting(){
         return "index.html";
     }
-
+    @GetMapping("/market")
+    String getMarket(){
+        return "market.html";
+    }
 }
 
