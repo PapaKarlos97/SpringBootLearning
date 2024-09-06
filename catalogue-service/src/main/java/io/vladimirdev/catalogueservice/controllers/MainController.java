@@ -13,7 +13,7 @@ public class MainController {
     private final CustomerRepo customerRepo;
 @GetMapping
 String index() {
-    return "some text "+ new Date()+", "+customerRepo.findAll();
+    return   "some text "+ new Date()+", "+customerRepo.findAll();
 }
 }
 
