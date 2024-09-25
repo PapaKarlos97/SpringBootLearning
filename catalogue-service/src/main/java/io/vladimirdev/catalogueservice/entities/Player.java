@@ -20,7 +20,7 @@ public class Player implements UserDetails {
     private String name;
     private String email;
     private String pass;
-
+    private int balance;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of();
